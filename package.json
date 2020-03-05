@@ -1,0 +1,19 @@
+{
+  "name": "shutter",
+  "version": "1.0.0",
+  "description": "A text editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gastrodon/shutter.git"
+  },
+  "author": "Zero <dakoolstwunn@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gastrodon/shutter/issues"
+  },
+  "homepage": "https://github.com/gastrodon/shutter#readme"
+}
