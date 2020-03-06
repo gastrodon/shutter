@@ -4,16 +4,23 @@
   "description": "A text editor",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "up": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gastrodon/shutter.git"
+    "url": "https://github.com/gastrodon/shutter.git"
   },
   "author": "Zero <dakoolstwunn@gmail.com>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/gastrodon/shutter/issues"
   },
-  "homepage": "https://github.com/gastrodon/shutter#readme"
+  "homepage": "https://github.com/gastrodon/shutter#readme",
+  "devDependencies": {
+    "electron": "^8.0.3",
+    "electron-builder": "^22.3.6",
+    "electron-localshortcut": "^3.2.1",
+    "electron-packager": "^14.2.1",
+    "less": "^3.11.1"
+  }
 }
