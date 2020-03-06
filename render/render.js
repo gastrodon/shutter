@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron")
+
 const TAB = "    "
 const KeyFuncs = {}
 
