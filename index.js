@@ -23,7 +23,7 @@ async function draw_root(floating) {
 }
 
 async function float_restart(content) {
-    ipcMain.on("float-ok", async () => {})
+    ipcMain.removeListener("float-ok", float_restart)
 
     let active = BrowserWindow.getFocusedWindow()
 
