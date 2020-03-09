@@ -1,8 +1,7 @@
-const { do_key, map_key } = require("./key_funcs")
 const events = require("./event_funcs")
+const { do_key, map_key } = require("./key_funcs")
 const { ipcRenderer } = require("electron")
 
-const editor = document.getElementById("editor-root")
 const colors = {
     light_blue: "#71a4f7",
     light_red: "#ff9bbe"

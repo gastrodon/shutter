@@ -1,24 +1,21 @@
+const $ = require("./resolve")
+
 async function set_handle_color(floating) {
-    document.getElementById("floater-handle")
-        .style.background = colors[floating ? "light_red" : "light_blue"]
+    let color = colors[floating ? "light_red" : "light_blue"]
+    $("#floater-handle").style.background = color
 }
 
 async function draw_prompt(prefix) {
     prefix = prefix || ""
-    document.getElementById("prompt")
-        .style.display = "flex"
-    document.getElementById("prompt-label")
-        .children[0]
-        .innerText = prefix
+    $("#prompt").style.display = "flex"
+    $("#prompt-label").innerText = prefix
 }
 
 async function destroy_prompt() {
-    document.getElementById("prompt")
-        .style.display = "none"
-    document.getElementById("prompt-label")
-        .children[0]
-        .innerText = document.getElementById("prompt-input")
-        .innerText = ""
+    $("#prompt").style.display = "none"
+    for (let child of $("#prompt").children) {
+        child.innerText = ""
+    }
 }
 
 module.exports = {

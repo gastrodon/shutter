@@ -1,3 +1,4 @@
+const $ = require("./resolve")
 const ui = require('./interface_funcs');
 
 async function prepare_float() {
@@ -8,7 +9,7 @@ async function prepare_float() {
 }
 
 async function editor_state(event, restore_data) {
-    editor.value = restore_data.content || ""
+    $("#editor-root").value = restore_data.content || ""
     ui.set_handle_color(restore_data.floating)
 }
 
