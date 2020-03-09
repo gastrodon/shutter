@@ -1,3 +1,4 @@
+const context = require('./context');
 const $ = require("./resolve")
 
 async function set_handle_color(floating) {
@@ -7,11 +8,15 @@ async function set_handle_color(floating) {
 
 async function draw_prompt(prefix) {
     prefix = prefix || ""
+    context.set(prefix)
+
     $("#prompt").style.display = "flex"
     $("#prompt-label").innerText = prefix
 }
 
 async function destroy_prompt() {
+    context.set("editor")
+
     $("#prompt").style.display = "none"
     $("#prompt-label").innerText = ""
     for (let child of $("#prompt-wrapped").children) {
