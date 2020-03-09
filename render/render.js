@@ -23,6 +23,24 @@ async function set_handle_color(floating) {
         .style.background = colors[floating ? "light_red" : "light_blue"]
 }
 
+async function draw_prompt(prefix) {
+    prefix = prefix || ""
+    document.getElementById("prompt")
+        .style.display = "flex"
+    document.getElementById("prompt-label")
+        .children[0]
+        .innerText = prefix
+}
+
+async function destroy_prompt() {
+    document.getElementById("prompt")
+        .style.display = "none"
+    document.getElementById("prompt-label")
+        .children[0]
+        .innerText = document.getElementById("prompt-input")
+        .innerText = ""
+}
+
 async function prepare_float() {
     let restore_data = {
         content: editor.value.toString()
