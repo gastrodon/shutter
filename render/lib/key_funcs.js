@@ -36,4 +36,12 @@ async function do_key(event) {
     }
 }
 
-module.exports = { do_key, map_key }
+async function update_prompt(event) {
+    ui.prompt_overlay_text_after("...")
+}
+
+module.exports = {
+    do_key,
+    map_key,
+    update_prompt
+}

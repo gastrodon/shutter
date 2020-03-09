@@ -1,5 +1,6 @@
 const events = require("./lib/event_funcs")
-const { do_key, map_key } = require("./lib/key_funcs")
+const key = require("./lib/key_funcs")
+const $ = require("./lib/resolve")
 const { ipcRenderer } = require("electron")
 
 const colors = {
@@ -8,12 +9,16 @@ const colors = {
 }
 
 
-document.onkeyup = async (event) => { map_key(event) }
+document.onkeyup = key.map_key
 document.onkeydown = async (event) => {
-    do_key(event)
-    map_key(event)
+    key.do_key(event)
+    key.map_key(event)
 }
 
+$("#prompt-input").onkeydown = $("#prompt-input").onkeyup = async (event) => {
+    key.update_prompt(event)
+    key.map_key(event)
+}
 
 // Should be called when the editor is about to toggle floating mode
 // This actually closes and redraws the window, so the editor may need
