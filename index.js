@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain, globalShortcut } = require("electron")
 let floating = false
 let float_waiting = false
 
-async function draw_root(floating) {
+async function draw_root(floating, restore_data) {
     let root = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true
@@ -17,6 +17,10 @@ async function draw_root(floating) {
         root.setAlwaysOnTop(true, "floating", 1)
         root.setVisibleOnAllWorkspaces(true)
     }
+
+    root.webContents.on("did-finish-load", async () => {
+        root.webContents.send("editor-state", restore_data || {})
+    })
 
     root.loadFile("./render/editor.html")
     return root
