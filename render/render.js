@@ -1,5 +1,5 @@
 const do_key = require("./key_funcs")
-const { ipcRenderer} = require("electron")
+const { ipcRenderer } = require("electron")
 
 const editor = document.getElementById("editor-root")
 
@@ -15,12 +15,19 @@ document.onkeydown = async (event) => {
 }
 
 async function prepare_float() {
-    ipcRenderer.send("float-ok", editor.value)
+    let restore_data = {
+        content: editor.value.toString()
+    }
+    ipcRenderer.send("float-ok", restore_data)
 }
 
-async function set_editor_content(content) {
-    editor.value = content
+async function editor_state(event, restore_data) {
+    editor.value = restore_data.content || ""
 }
 
-ipcRenderer.once("float-prepare", prepare_float)
-ipcRenderer.on("editor-content", set_editor_content)
+// Should be called when the editor is about to toggle floating mode
+// This actually closes and redraws the window, so the editor may need
+// to do some cleanup and send some data over
+ipcRenderer.on("float-prepare", prepare_float)
+// Should be called when the main process wants the editor to load some state
+ipcRenderer.on("editor-state", editor_state)
