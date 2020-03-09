@@ -1,3 +1,15 @@
+@colors:
+{
+    handle-floating: #71a4f7;
+    editor-background: #00152d;
+    primary-text: #fff;
+}
+
+@sizes:
+{
+    handle: 10px;
+}
+
 *
 {
     margin: 0;
@@ -19,26 +31,26 @@ body
 
     resize: none;
 
-    color: #fff;
+    color: @colors[primary-text];
     border: none;
     outline: none;
-    background: #00152d;
+    background: @colors[editor-background];
 }
 
 #floater-handle
 {
     position: absolute;
     z-index: 2;
-    top: 10px;
-    right: 10px;
+    top: @sizes[handle];
+    right: @sizes[handle];
 
     float: right;
 
-    width: 10px;
-    height: 10px;
+    width: @sizes[handle];
+    height: @sizes[handle];
 
     border-radius: 10px;
-    background: #71a4f7;
+    background: @colors[handle-floating];
 
     -webkit-app-region: drag !important;
 }
