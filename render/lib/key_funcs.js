@@ -1,5 +1,8 @@
 const ui = require("./interface_funcs")
-const KeyFuncs = {}
+const $ = require("./resolve")
+
+const EditorFuncs = {}
+const PromptFuncs = {}
 const keymap = {}
 const TAB = "    "
 
@@ -7,7 +10,7 @@ async function map_key(event) {
     keymap[event.key.toLowerCase()] = event.type == "keydown"
 }
 
-KeyFuncs["tab"] = async (event) => {
+EditorFuncs["tab"] = async (event) => {
     event.preventDefault()
     if (keymap["shift"]) {
         return
@@ -21,7 +24,7 @@ KeyFuncs["tab"] = async (event) => {
     where.focus()
 }
 
-KeyFuncs["o"] = async (event) => {
+EditorFuncs["o"] = async (event) => {
     if (!keymap["control"]) {
         return
     }
@@ -36,12 +39,21 @@ async function do_key(event) {
     }
 }
 
+async function editor(event) {
+    return await do_key(event, EditorFuncs)
+}
+
+async function prompt(event) {
+    return await do_key(event, PromptFuncs)
+}
+
 async function update_prompt(event) {
     ui.prompt_overlay_text_after("...")
 }
 
 module.exports = {
-    do_key,
+    prompt,
+    editor,
     map_key,
     update_prompt
 }

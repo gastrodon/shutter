@@ -9,9 +9,9 @@ const colors = {
 }
 
 
-document.onkeyup = key.map_key
-document.onkeydown = async (event) => {
-    key.do_key(event)
+$("#editor-root").onkeyup = key.map_key
+$("#editor-root").onkeydown = async (event) => {
+    key.editor(event)
     key.map_key(event)
 }
 
