@@ -3,6 +3,10 @@ let floating = false
 let float_waiting = false
 
 async function draw_root(floating, restore_data) {
+    restore_data = {
+        ...(restore_data || {}),
+        ...{ floating: floating }
+    }
     let root = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true
@@ -19,7 +23,7 @@ async function draw_root(floating, restore_data) {
     }
 
     root.webContents.on("did-finish-load", async () => {
-        root.webContents.send("editor-state", restore_data || {})
+        root.webContents.send("editor-state", restore_data)
     })
 
     root.loadFile("./render/editor.html")

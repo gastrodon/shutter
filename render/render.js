@@ -2,6 +2,10 @@ const do_key = require("./key_funcs")
 const { ipcRenderer } = require("electron")
 
 const editor = document.getElementById("editor-root")
+const colors = {
+    light_blue: "#71a4f7",
+    light_red: "#ff9bbe"
+}
 
 const keymap = {}
 async function map_key(event) {
@@ -14,6 +18,11 @@ document.onkeydown = async (event) => {
     map_key(event)
 }
 
+async function set_handle_color(floating) {
+    document.getElementById("floater-handle")
+        .style.background = colors[floating ? "light_red" : "light_blue"]
+}
+
 async function prepare_float() {
     let restore_data = {
         content: editor.value.toString()
@@ -23,6 +32,7 @@ async function prepare_float() {
 
 async function editor_state(event, restore_data) {
     editor.value = restore_data.content || ""
+    set_handle_color(restore_data.floating)
 }
 
 // Should be called when the editor is about to toggle floating mode
