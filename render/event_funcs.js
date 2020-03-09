@@ -3,7 +3,7 @@ const ui = require('./interface_funcs');
 
 async function prepare_float() {
     let restore_data = {
-        content: editor.value.toString()
+        content: $("#editor-root").value.toString()
     }
     ipcRenderer.send("float-ok", restore_data)
 }
