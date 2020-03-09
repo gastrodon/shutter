@@ -1,4 +1,4 @@
-const do_key = require("./key_funcs")
+const { do_key, map_key } = require("./key_funcs")
 const { ipcRenderer } = require("electron")
 
 const editor = document.getElementById("editor-root")
@@ -7,10 +7,6 @@ const colors = {
     light_red: "#ff9bbe"
 }
 
-const keymap = {}
-async function map_key(event) {
-    keymap[event.key.toLowerCase()] = event.type == "keydown"
-}
 
 document.onkeyup = async (event) => { map_key(event) }
 document.onkeydown = async (event) => {
