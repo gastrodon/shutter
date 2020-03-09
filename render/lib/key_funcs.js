@@ -25,7 +25,7 @@ EditorFuncs["tab"] = async (event) => {
 }
 
 EditorFuncs["o"] = async (event) => {
-    if (!keymap["control"]) {
+    if (!keymap["control"] || keymap["shift"]) {
         return
     }
 
