@@ -12,6 +12,7 @@
     handle: 10px;
     primary-text: 12px;
     prompt-height: 15px;
+    prompt-prefix-ceiling: 2px;
 }
 
 *
@@ -67,7 +68,7 @@ body
     width: @sizes[handle];
     height: @sizes[handle];
 
-    border-radius: 10px;
+    border-radius: @sizes[handle];
     background: @colors[light-blue];
 
     -webkit-app-region: drag !important;
@@ -79,7 +80,7 @@ body
     z-index: 2;
     bottom: 0;
 
-    display: none;
+    display: flex;
     overflow: hidden;
     flex-direction: row;
 
@@ -96,6 +97,7 @@ body
     display: block;
 
     height: 100%;
+    padding-top: @sizes[prompt-prefix-ceiling];
 
     text-align: center;
 
@@ -104,14 +106,6 @@ body
     .font;
     flex-grow: 1;
     flex-basis: 0;
-    span
-    {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-
-        width: 100%;
-    }
 }
 
 #prompt-input
