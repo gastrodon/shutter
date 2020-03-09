@@ -14,6 +14,7 @@ async function draw_root(floating, restore_data) {
         height: 200,
         width: 300,
         frame: false,
+        transparent: true,
         fullScreenable: !floating
     })
 
