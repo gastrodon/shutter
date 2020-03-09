@@ -26,23 +26,16 @@ async function draw_root(floating, restore_data) {
     return root
 }
 
-async function float_restart(content) {
-    ipcMain.removeListener("float-ok", float_restart)
-
+async function float_restart(event, content) {
     let active = BrowserWindow.getFocusedWindow()
 
-    let created = await draw_root(floating)
-    await created.webContents.send("editor-content", content)
-    await created.focus()
-
+    await draw_root(floating, content)
     await active.close()
-
 }
 
-async function float_prepare() {
+async function float_prepare(event) {
     let active = BrowserWindow.getFocusedWindow()
     floating = !floating
-    ipcMain.on("float-ok", float_restart)
     active.webContents.send("float-prepare")
 }
 
@@ -55,3 +48,5 @@ app.on("ready", async () => {
     draw_root(floating)
     register_handlers()
 })
+
+ipcMain.on("float-ok", float_restart)
