@@ -1,4 +1,5 @@
 const { do_key, map_key } = require("./key_funcs")
+const ui = require("./interface_funcs")
 const { ipcRenderer } = require("electron")
 
 const editor = document.getElementById("editor-root")
@@ -14,29 +15,6 @@ document.onkeydown = async (event) => {
     map_key(event)
 }
 
-async function set_handle_color(floating) {
-    document.getElementById("floater-handle")
-        .style.background = colors[floating ? "light_red" : "light_blue"]
-}
-
-async function draw_prompt(prefix) {
-    prefix = prefix || ""
-    document.getElementById("prompt")
-        .style.display = "flex"
-    document.getElementById("prompt-label")
-        .children[0]
-        .innerText = prefix
-}
-
-async function destroy_prompt() {
-    document.getElementById("prompt")
-        .style.display = "none"
-    document.getElementById("prompt-label")
-        .children[0]
-        .innerText = document.getElementById("prompt-input")
-        .innerText = ""
-}
-
 async function prepare_float() {
     let restore_data = {
         content: editor.value.toString()
@@ -46,7 +24,7 @@ async function prepare_float() {
 
 async function editor_state(event, restore_data) {
     editor.value = restore_data.content || ""
-    set_handle_color(restore_data.floating)
+    ui.set_handle_color(restore_data.floating)
 }
 
 // Should be called when the editor is about to toggle floating mode
