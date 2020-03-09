@@ -1,5 +1,5 @@
-const events = require("./event_funcs")
-const { do_key, map_key } = require("./key_funcs")
+const events = require("./lib/event_funcs")
+const { do_key, map_key } = require("./lib/key_funcs")
 const { ipcRenderer } = require("electron")
 
 const colors = {
