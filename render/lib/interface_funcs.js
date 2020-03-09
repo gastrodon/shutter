@@ -18,8 +18,21 @@ async function destroy_prompt() {
     }
 }
 
+async function prompt_overlay_text(text) {
+    text = text || ""
+    $("#prompt-input-overlay").innerText = text
+}
+
+async function prompt_overlay_text_after(text) {
+    text = `${$("#prompt-input").value || ""}${text || ""}`
+    return await prompt_overlay_text(text)
+
+}
+
 module.exports = {
     set_handle_color,
     draw_prompt,
-    destroy_prompt
+    destroy_prompt,
+    prompt_overlay_text,
+    prompt_overlay_text_after
 }

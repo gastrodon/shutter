@@ -15,6 +15,11 @@
     prompt-prefix-ceiling: 2px;
 }
 
+@opacity:
+{
+    overlay-text: .3;
+}
+
 *
 {
     margin: 0;
@@ -97,7 +102,7 @@ body
     display: block;
 
     height: 100%;
-    padding-top: @sizes[prompt-prefix-ceiling];
+    padding: @sizes[prompt-prefix-ceiling] 5px 0 5px;
 
     text-align: center;
 
@@ -108,12 +113,40 @@ body
     flex-basis: 0;
 }
 
-#prompt-input
+#prompt-wrapped
 {
-    background: @colors[lighter-blue];
+    position: relative;
 
-    .input_mixin;
     flex-grow: 4;
     order: 1;
     flex-basis: 0;
+}
+
+#prompt-input
+{
+    position: absolute;
+    z-index: 2;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: @colors[lighter-blue];
+
+    .input_mixin;
+}
+
+#prompt-input-overlay
+{
+    position: absolute;
+    z-index: 3;
+
+    width: 100%;
+    padding-top: @sizes[prompt-prefix-ceiling];
+
+    pointer-events: none;
+
+    opacity: @opacity[overlay-text];
+
+    .font;
 }
