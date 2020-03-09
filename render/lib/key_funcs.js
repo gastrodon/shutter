@@ -29,12 +29,18 @@ EditorFuncs["o"] = async (event) => {
         return
     }
 
-    ui.draw_prompt("open")
+    await ui.draw_prompt("open")
+    $("#prompt-input").focus()
 }
 
 PromptFuncs["tab"] = async (event) => {
     event.preventDefault()
     $("#prompt-input").value = $("#prompt-input-overlay").innerText
+}
+
+PromptFuncs["escape"] = async (event) => {
+    $("#editor-root").focus()
+    ui.destroy_prompt()
 }
 
 async function do_key(event, target) {

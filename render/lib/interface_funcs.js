@@ -13,8 +13,10 @@ async function draw_prompt(prefix) {
 
 async function destroy_prompt() {
     $("#prompt").style.display = "none"
-    for (let child of $("#prompt").children) {
+    $("#prompt-label").innerText = ""
+    for (let child of $("#prompt-wrapped").children) {
         child.innerText = ""
+        child.value = ""
     }
 }
 
