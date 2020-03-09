@@ -32,8 +32,13 @@ EditorFuncs["o"] = async (event) => {
     ui.draw_prompt("open")
 }
 
-async function do_key(event) {
-    let callable = KeyFuncs[event.key.toLowerCase()]
+PromptFuncs["tab"] = async (event) => {
+    event.preventDefault()
+    $("#prompt-input").value = $("#prompt-input-overlay").innerText
+}
+
+async function do_key(event, target) {
+    let callable = target[event.key.toLowerCase()]
     if (callable) {
         return callable(event)
     }
@@ -48,7 +53,7 @@ async function prompt(event) {
 }
 
 async function update_prompt(event) {
-    ui.prompt_overlay_text_after("...")
+    ui.prompt_overlay_text_after("")
 }
 
 module.exports = {

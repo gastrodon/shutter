@@ -15,7 +15,13 @@ $("#editor-root").onkeydown = async (event) => {
     key.map_key(event)
 }
 
-$("#prompt-input").onkeydown = $("#prompt-input").onkeyup = async (event) => {
+$("#prompt-input").onkeyup = async (event) => {
+    key.update_prompt(event)
+    key.map_key(event)
+}
+
+$("#prompt-input").onkeydown = async (event) => {
+    key.prompt(event)
     key.update_prompt(event)
     key.map_key(event)
 }
