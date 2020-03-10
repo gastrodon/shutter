@@ -1,3 +1,4 @@
+const context = require("./context")
 const ui = require("./interface_funcs")
 const $ = require("./resolve")
 
@@ -41,6 +42,10 @@ PromptFuncs["tab"] = async (event) => {
 PromptFuncs["escape"] = async (event) => {
     $("#editor-root").focus()
     ui.destroy_prompt()
+}
+
+PromptFuncs["enter"] = async (event) => {
+    context.call("enter", event)
 }
 
 async function do_key(event, target) {
