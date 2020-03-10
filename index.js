@@ -1,4 +1,6 @@
 const { app, BrowserWindow, ipcMain, globalShortcut } = require("electron")
+const fs = require("fs").promises
+
 let floating = false
 let float_waiting = false
 
@@ -44,6 +46,25 @@ async function float_prepare(event) {
     active.webContents.send("float-prepare")
 }
 
+async function open_disk(event, path) {
+    let file = await fs.open(path)
+    event.sender.webContents.send("load-text", await file.readFile({ encoding: "utf-8" }))
+    file.close()
+}
+
+async function open_url(event, path) {
+    event.sender.webContents.send("text", `I can't open ${path} yet :(`)
+}
+
+async function open_path(event, path) {
+    console.log(`will open ${path}`);
+    if (path.match(/^https?:\/\/.+/g)) {
+        return await open_url(event, path)
+    }
+
+    return await open_disk(event, path)
+}
+
 function register_handlers() {
     let gs = globalShortcut
     gs.register("CmdOrCtrl+Shift+F", float_prepare)
@@ -54,4 +75,9 @@ app.on("ready", async () => {
     register_handlers()
 })
 
+// Spawned when the editor renderer
+// tells us that it is ready to float
 ipcMain.on("float-ok", float_restart)
+// Spawned when the editor wants to open
+// a document at some location
+ipcMain.on("open-path", open_path)

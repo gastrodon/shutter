@@ -21,7 +21,6 @@
     "electron-builder": "^22.3.6",
     "electron-localshortcut": "^3.2.1",
     "electron-packager": "^14.2.1",
-    "file-system": "^2.2.2",
     "less": "^3.11.1"
   }
 }

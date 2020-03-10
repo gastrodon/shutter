@@ -13,7 +13,16 @@ async function editor_state(event, restore_data) {
     ui.set_handle_color(restore_data.floating)
 }
 
+
+async function load_text(event, text) {
+    $("#editor-root").focus()
+    $("#editor-root").value = text
+    ui.destroy_prompt()
+}
+
+
 module.exports = {
     prepare_float,
-    editor_state
+    editor_state,
+    load_text
 }

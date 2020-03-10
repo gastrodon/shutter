@@ -32,3 +32,5 @@ $("#prompt-input").onkeydown = async (event) => {
 ipcRenderer.on("float-prepare", events.prepare_float)
 // Should be called when the main process wants the editor to load some state
 ipcRenderer.on("editor-state", events.editor_state)
+
+ipcRenderer.on("load-text", events.load_text)

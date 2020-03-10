@@ -1,10 +1,15 @@
+const $ = require("./resolve")
+const { ipcRenderer } = require("electron")
+
 const ContextFuncs = {
     editor: {},
     open: {},
 }
 
+// Resolve some path and open what's there
 ContextFuncs["open"]["enter"] = async (event) => {
-    console.log("will open");
+    let path = $("#prompt-input").value
+    ipcRenderer.send("open-path", path)
 }
 
 let _context = "editor"
